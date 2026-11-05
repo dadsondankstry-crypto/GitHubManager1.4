@@ -1,0 +1,26 @@
+GITHUB MANAGER 1.4 — GUIA RAPIDO
+
+INSTALAR
+1. Baixe o ZIP original do projeto 1.4.
+2. No GitHub Manager antigo, abra o REPOSITORIO DO PROPRIO GITHUB MANAGER.
+3. Enviar ZIP (na raiz da branch main).
+4. GitHub Actions > Gerar APK GitHub Manager > GitHubManager-1_4-APK.
+5. Extraia app-debug.apk e instale. Guarde o token antes de desinstalar a versao anterior!
+
+CRIAR REPOSITORIO COM UM UNICO ZIP
+Inicio > ZIP -> criar repositorio e publicar > selecionar ZIP > Publico ou Privado > confirmar.
+O nome vem do arquivo ZIP. Se ja existir, e sugerido outro nome. Preserva .github/workflows.
+
+BAIXAR UM APK DIRETO SEM WEBVIEW
+Repositorios > abrir repositorio > Acoes do repositorio > Baixar APK sem abrir navegador.
+Selecione artefato > Salvar APK pronto > escolha pasta > Abrir para instalar.
+Token fine-grained precisa de Actions: Read.
+
+BAIXAR ARQUIVOS / PASTAS
+Repositorios > abrir repositorio > marcar itens > Baixar selecionados ZIP ou sem ZIP.
+Na lista de arquivos, toque em um arquivo e escolha Baixar arquivo.
+Para tudo, use Baixar repositorio completo (ZIP ou pasta).
+
+IMPORTANTE
+O ZIP enviado e codigo-fonte (NAO APK). O APK depende de compilar pelo GitHub Actions.
+O Android pode exigir permissao para instalar APKs. Internet limitada: veja o tamanho antes de baixar.

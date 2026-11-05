@@ -1,0 +1,36 @@
+name: Gerar APK GitHub Manager
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v5
+      - name: Configurar Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Preparar Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      # O runner ubuntu-24.04 já inclui Android SDK 35.
+      # Evita a etapa setup-android/sdkmanager que falhou em builds anteriores.
+      - name: Verificar Android SDK pré-instalado
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          test -f "$ANDROID_HOME/platforms/android-35/android.jar" || (echo "Android SDK 35 indisponível no runner"; exit 1)
+      - name: Compilar APK de teste
+        run: gradle --no-daemon assembleDebug
+      - name: Disponibilizar APK
+        uses: actions/upload-artifact@v5
+        with:
+          name: GitHubManager-1_4-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
